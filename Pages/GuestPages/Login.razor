@@ -1,0 +1,183 @@
+﻿@using BeyondDisabilityBlazorApp.Data.DataAccess
+@using BeyondDisabilityBlazorApp.Data.Models
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<!-- Header with Request Demo Button -->
+<div class="container-fluid p-3 d-flex justify-content-between align-items-center" style="background-color: #333;">
+    <div class="d-flex align-items-center">
+        <h3 class="text-white me-3">Beyond Disability</h3>
+    </div>
+    <div>
+        <a href="/emergency-notices" class="btn btn-danger">Emergency Notice Board</a>
+    </div>
+</div>
+
+<!-- Login Form Section -->
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+    <div class="login-card card p-4">
+        <h2 class="text-center mb-4">@pageTitle</h2>
+        <EditForm Model="@userModel" OnValidSubmit="@HandleSubmit">
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">Email / Phone No</label>
+                <InputText id="email" class="form-control input-rounded" @bind-Value="userModel.Email" placeholder="Enter your email or phone number" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="password" class="form-label">Passcode</label>
+                <InputText id="password" type="password" class="form-control input-rounded" @bind-Value="userModel.Password" placeholder="Enter your passcode" />
+            </div>
+
+            @if (isSignUpMode)
+            {
+                <div class="form-group mb-3">
+                    <label for="passwordConfirm" class="form-label">Confirm Passcode</label>
+                    <InputText id="passwordConfirm" type="password" class="form-control input-rounded" @bind-Value="passwordConfirm" placeholder="Confirm your passcode" />
+                </div>
+                <div class="form-group mb-3">
+                    <label for="role" class="form-label">Sign up as:</label>
+                    <InputSelect id="role" class="form-control input-rounded" @bind-Value="userModel.Role">
+                        <option value="-1">Select your role</option>
+                        <option value="@studentRole">Student</option>
+                        <option value="@groceryPalRole">Grocery Pal</option>
+                    </InputSelect>
+                </div>
+            }
+
+            <button type="submit" class="btn btn-primary btn-block btn-primary">@submitButtonLabel</button>
+        </EditForm>
+
+        <div class="text-center mt-3">
+            <a href="javascript:void(0)" class="toggle-link" @onclick="ToggleMode">@toggleLinkLabel</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-card {
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 400px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .input-rounded {
+        border-radius: 10px;
+    }
+
+    .btn-orange {
+        background-color: #f4a261;
+        border-color: #f4a261;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+        .btn-orange:hover {
+            background-color: #e76f51;
+            border-color: #e76f51;
+        }
+
+    .btn-outline-dark {
+        border-color: #333;
+        color: #333;
+    }
+
+        .btn-outline-dark i {
+            margin-right: 5px;
+        }
+
+    .btn-outline-light {
+        border-color: #fff;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    body {
+        background: url('/images/login-background.jpg') no-repeat center fixed;
+        background-size: cover;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
+
+@code {
+    private bool isSignUpMode = false;
+
+    private int studentRole = 1;
+    private int groceryPalRole = 2;
+    private UserModel userModel = new UserModel() { Role = -1 };
+    private string passwordConfirm;
+
+    // Dynamic labels for the form based on the mode
+    private string pageTitle => isSignUpMode ? "Register" : "Login";
+    private string submitButtonLabel => isSignUpMode ? "Sign Up" : "Sign In";
+    private string toggleLinkLabel => isSignUpMode ? "Already have an account? Sign In" : "Don't have an account? Sign Up";
+
+    private void ToggleMode()
+    {
+        isSignUpMode = !isSignUpMode;
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (userModel.Email != "" && userModel.Password != "")
+        {
+            bool iAuthenticated = false;
+
+            // Register or Login user
+            if (isSignUpMode)
+            {
+                // Register user
+                if (passwordConfirm == userModel.Password && userModel.Role != -1)
+                {
+                    SqliteDataAccess.SaveUser(userModel);
+                }
+                else
+                {
+                    await JS.InvokeVoidAsync("alert", "Incorrect credentials, please try again");
+                    return;
+                }
+            }
+
+            // Login user
+            var verfiedUser = SqliteDataAccess.LoadUsers().FirstOrDefault(x => x.Email == userModel.Email && x.Password == userModel.Password);
+            iAuthenticated = verfiedUser != null;
+            if (iAuthenticated)
+            {
+                userModel = verfiedUser;
+                SqliteDataAccess.CurrentUserId = userModel.Id;
+                SqliteDataAccess.CurrentUserName = userModel.Email;
+            }
+
+            // Navigate to next page
+            if (iAuthenticated)
+            {
+                if (userModel.Role == studentRole)
+                {
+                    Navigation.NavigateTo("/student/home");
+                }
+                else if (userModel.Role == groceryPalRole)
+                {
+                    Navigation.NavigateTo("/grocery-pal/home");
+                }
+            }
+            else
+            {
+                await JS.InvokeVoidAsync("alert", "Incorrect credentials, please try again");
+            }
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Incorrect credentials, please try again");
+        }
+    }
+}

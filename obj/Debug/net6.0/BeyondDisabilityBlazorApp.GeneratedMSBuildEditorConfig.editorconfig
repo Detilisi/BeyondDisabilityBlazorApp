@@ -1,0 +1,91 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BeyondDisabilityBlazorApp
+build_property.RootNamespace = BeyondDisabilityBlazorApp
+build_property.ProjectDir = D:\source\BeyondDisabilityBlazorApp\BeyondDisabilityBlazorApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\source\BeyondDisabilityBlazorApp\BeyondDisabilityBlazorApp
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/GroceryPalPages/GroceryPalHome.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3JvY2VyeVBhbFBhZ2VzXEdyb2NlcnlQYWxIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/GuestPages/EmergencyNoticeBoard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3Vlc3RQYWdlc1xFbWVyZ2VuY3lOb3RpY2VCb2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/GuestPages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR3Vlc3RQYWdlc1xMb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/StudentPages/AcademicResources.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFBhZ2VzXEFjYWRlbWljUmVzb3VyY2VzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/StudentPages/EmergencyServices.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFBhZ2VzXEVtZXJnZW5jeVNlcnZpY2VzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/StudentPages/GroceryAssist.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFBhZ2VzXEdyb2NlcnlBc3Npc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/StudentPages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFBhZ2VzXEhvbWUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/StudentPages/Reminders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFBhZ2VzXFJlbWluZGVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Shared/GuestLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEd1ZXN0TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-qzzawgddro
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-oauamiej4o
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ogdb3be7tg
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/source/BeyondDisabilityBlazorApp/BeyondDisabilityBlazorApp/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

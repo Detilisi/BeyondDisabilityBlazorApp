@@ -1,0 +1,52 @@
+﻿@page "/student/grocery-assist"
+@using BeyondDisabilityBlazorApp.Data.DataAccess
+@using BeyondDisabilityBlazorApp.Data.Models
+
+<PageTitle>Grocery Pals</PageTitle>
+
+<div class="container mt-5">
+     <!-- Introduction Section -->
+    <div class="text-center mb-5">
+        <h1 class="text-success">Meet Our Grocery Pals</h1>
+        <p class="lead">Our registered Grocery Pals are prepared and ready to assist you with all your grocery shopping and delivery needs.</p>
+    </div>
+
+    <div class="row d-flex flex-column">
+        @if (groceryPals.Count == 0)
+        {
+            <div class="alert alert-success text-center mt-5" role="alert">
+                Sorry, no grocery pals are available right now. Please check back later!
+            </div>
+        }
+        else
+        {
+            @foreach (var groceryPal in groceryPals)
+            {
+                <div class="col mb-4">
+                    <div class="card shadow border-2" style="border-radius: 15px;">
+                        <div class="card-body p-4 bg-light" style="border-radius: 15px;">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/user.png" alt="avatar" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                                <h5 class="card-title mb-0 text-success">@groceryPal.Name</h5>
+                            </div>
+                            <p class="mt-3">@groceryPal.Details</p>
+                            <p class="text-success"><strong>Pricing:</strong> @groceryPal.Pricing</p>
+                            <p class="text-success"><strong>Contact:</strong> @groceryPal.Contact</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
+@code {
+    private List<GroceryPalModel> groceryPals = new List<GroceryPalModel>();
+
+    protected override void OnInitialized()
+    {
+        groceryPals = SqliteDataAccess.LoadGroceryPals();
+    }
+}

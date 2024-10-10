@@ -1,0 +1,93 @@
+﻿@page "/student/reminders"
+@using BeyondDisabilityBlazorApp.Data.DataAccess
+@using BeyondDisabilityBlazorApp.Data.Models
+
+<PageTitle>Reminders</PageTitle>
+
+<div class="container mt-5">
+    <!-- Subtitle and Description -->
+    <div class="text-center mb-5">
+        <h1 class="text-primary display-4 fw-bold">Reminders</h1>
+        <p class="lead">
+            Keep track of your medications and appointments with this simple reminder tool.
+            Add reminders for your medicine schedules or upcoming medical appointments so you never forget an important task.
+        </p>
+    </div>
+
+    <!-- Reminder Form -->
+    <div class="card shadow-sm p-4 mb-5">
+        <h4 class="card-title mb-3">Add New Reminder</h4>
+        <form @onsubmit="AddReminder">
+            <div class="form-floating mb-3">
+                <input type="text" id="reminderTitle" class="form-control" placeholder="Reminder Title" @bind="newReminderTitle" required />
+                <label for="reminderTitle">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="datetime-local" id="reminderDate" class="form-control" @bind="newReminderDate" required />
+                <label for="reminderDate">Date and Time</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100">Add Reminder</button>
+        </form>
+    </div>
+
+    <!-- Reminder List -->
+    <div class="mb-5">
+        <h4 class="mb-4">Upcoming Reminders</h4>
+        @if (reminders.Count == 0)
+        {
+            <div class="alert alert-info" role="alert">
+                No reminders set. Add some to get started.
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var reminder in reminders)
+                {
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">@reminder.Title</h5>
+                                <p class="card-text">
+                                    <strong>Date:</strong> @reminder.Date.ToString("f")
+                                </p>
+                                <button class="btn btn-danger" @onclick="() => RemoveReminder(reminder)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private string newReminderTitle;
+    private DateTime newReminderDate = DateTime.Now;
+    private List<ReminderModel> reminders = new List<ReminderModel>();
+
+    protected override void OnInitialized()
+    {
+        reminders = SqliteDataAccess.LoadReminders();
+    }
+
+    private void AddReminder()
+    {
+        if (!string.IsNullOrWhiteSpace(newReminderTitle))
+        {
+            var newReminder = new ReminderModel { Title = newReminderTitle, Date = newReminderDate };
+            SqliteDataAccess.SaveReminder(newReminder);
+            reminders.Add(newReminder);
+
+            newReminderTitle = string.Empty;
+            newReminderDate = DateTime.Now;
+        }
+    }
+
+    private void RemoveReminder(ReminderModel reminder)
+    {
+        SqliteDataAccess.DeleteReminder(reminder.Id);
+        reminders.Remove(reminder);
+    }
+
+}

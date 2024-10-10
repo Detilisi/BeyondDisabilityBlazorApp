@@ -1,0 +1,137 @@
+﻿@page "/grocery-pal/home"
+@using BeyondDisabilityBlazorApp.Data.DataAccess
+@using BeyondDisabilityBlazorApp.Data.Models
+@layout GuestLayout
+@inject IJSRuntime JS
+
+<PageTitle>Grocery Pal Account</PageTitle>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home">Beyond Disability</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto bg-dark">
+                <li class="nav-item">
+                    <a class="nav-link text-warning fw-bold" href="/">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Body -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- Introduction Section -->
+        <div class="text-center mb-5">
+            <h1 class="text-success">Welcome</h1>
+            <p class="lead">Manage your 'Grocery Pal' account.</p>
+        </div>
+
+        <div class="col-md-6">
+            <!-- User Details -->
+            <div class="card shadow-sm p-4 mt-4">
+                <!-- Profile Container -->
+                <div class="card shadow-lg rounded-circle mx-auto" style="width: 150px; height: 150px; background-color: #f8f9fa; border-radius: 50%;">
+                    <!-- Profile Image Placeholder -->
+                    <img src="/images/user.png" class="rounded-circle w-100 h-100" alt="Profile Image">
+                </div>
+                <div class="card-body">
+                    <!-- Editable Fields -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" @bind="groceryPalModel.Name" placeholder="Name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="contact" @bind="groceryPalModel.Contact" placeholder="Contact">
+                        <label for="contact">Contact</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="pricing" @bind="groceryPalModel.Pricing" placeholder="Pricing">
+                        <label for="pricing">Pricing in ZAR</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <textarea class="form-control" id="details" placeholder="Details" @bind="groceryPalModel.Details" style="height: 100px;"></textarea>
+                        <label for="details">Details</label>
+                    </div>
+
+                    @if (@isActive)
+                    {
+                        <span class="badge badge-success">Active</span>
+                    }
+                   
+                    <!-- Update Button -->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-success w-100" @onclick="UpdateDetails">UPDATE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body .form-floating {
+        margin-bottom: 1rem;
+    }
+
+    textarea.form-control, input.form-control {
+        border-radius: 10px;
+    }
+
+    button.btn-primary {
+        border-radius: 20px;
+    }
+
+</style>
+
+@code {
+
+    private bool isActive = true; 
+    private GroceryPalModel groceryPalModel = new GroceryPalModel()
+    {
+        Pricing = -1    
+    };
+
+    protected override void OnInitialized()
+    {
+        var verfiedPal = SqliteDataAccess.LoadGroceryPals().FirstOrDefault(x => x.UserId == SqliteDataAccess.CurrentUserId);
+        isActive = verfiedPal != null;
+        if (isActive)
+        {
+            groceryPalModel = verfiedPal;
+        }
+    }
+
+    private async Task UpdateDetails()
+    {
+        if (groceryPalModel.Name != "" && groceryPalModel.Contact != "" && groceryPalModel.Pricing != -1 && groceryPalModel.Details != "")
+        {
+            if (isActive)
+            {
+                SqliteDataAccess.UpdateGroceryPal(groceryPalModel);
+            }
+            else
+            {
+                SqliteDataAccess.SaveGroceryPal(groceryPalModel);
+            }
+
+            await JS.InvokeVoidAsync("alert", "Updated successfully");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Update failed, please try again");
+        }
+
+    }
+}

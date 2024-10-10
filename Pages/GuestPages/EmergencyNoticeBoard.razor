@@ -1,0 +1,83 @@
+﻿@page "/emergency-notices"
+@using BeyondDisabilityBlazorApp.Data.DataAccess
+@using BeyondDisabilityBlazorApp.Data.Models
+@layout GuestLayout
+
+<PageTitle>Emergency Notice Board</PageTitle>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">Beyond Disability</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto bg-primary">
+                <li class="nav-item">
+                    <a class="nav-link text-light fw-bold" href="/">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Body -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <!-- Introduction Section -->
+        <div class="text-center mb-5">
+            <h1 class="text-danger">Emergency Notice Board</h1>
+        </div>
+
+        @if (emergencyNotices.Count == 0)
+        {
+            <div class="alert alert-danger text-center" role="alert">
+                Emergency notice board is currently empty. Please check back later!
+            </div>
+        }
+        else
+        {
+            <!-- Emergency Contacts Table -->
+            <div class="card mt-5 shadow">
+                <div class="card-header text-center text-white bg-dark">
+                    <h3>Please help, these users are currently having an emegerncy!</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover text-center">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>User in troubled</th>
+                                <th>Emergency Reported At</th>
+                                <th>Emergency Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var notice in emergencyNotices)
+                            {
+                                <tr>
+                                    <td>@notice.UserName</td>
+                                    <td class="fw-bold text-primary">@notice.Date.ToString("g")</td>
+                                    <td>
+                                        
+                                        ( <a class="fw-bolder" href="https://www.google.com/maps?q=@notice.Lattitude,@notice.Longitude" target="_blank">
+                                            @notice.Lattitude, @notice.Longitude
+                                        </a> )
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@code {
+    private List<EmergencyNoticeModel> emergencyNotices = new List<EmergencyNoticeModel>();
+
+    protected override void OnInitialized()
+    {
+        emergencyNotices = SqliteDataAccess.LoadEmergencyNotices();
+    }
+}

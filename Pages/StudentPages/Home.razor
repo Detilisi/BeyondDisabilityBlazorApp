@@ -1,0 +1,103 @@
+﻿@page "/student/home"
+
+<PageTitle>Home</PageTitle>
+
+<!-- Hero Section -->
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Welcome</h1>
+            <p class="lead text-muted">
+                "Beyond Disability" is dedicated to improving the lives of students with disabilities at Unizulu by offering convenient, accessible, and safe services.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Card Section -->
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row d-flex">
+            <!-- Use Flexbox for equal height -->
+            @foreach (var card in albumList)
+            {
+                <div class="col-md-3 d-flex mb-4">
+                    <div class="card flex-fill shadow">
+                        <img src="@card.ImageUrl" class="bd-placeholder-img card-img-top" alt="@card.Title" style="height:225px; width:100%; object-fit:cover;">
+                        <div class="card-body text-white" style="background-color: @card.BackgroundColor;">
+                            <h5 class="card-title">@card.Title</h5>
+                            <p class="card-text">@card.Description</p>
+                            <a href="@card.Url" class="btn btn btn-outline-secondary bg-dark text-white">View</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- CSS for additional styling -->
+<style>
+    /* Ensure cards take up full height in the row */
+    .row.d-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card-body {
+        flex-grow: 1;
+    }
+</style>
+
+@code {
+    private List<AlbumModel> albumList = new List<AlbumModel>
+    {
+        new AlbumModel
+        {
+            Title = "Emergency services",
+            Description = "Quick access to emergency help.",
+            ImageUrl = "images/panic-button.jpg",
+            Url = "/student/emergency",
+            BackgroundColor = "red"
+        },
+        new AlbumModel
+        {
+            Title = "Reminders",
+            Description = "Reminders for your medication schedule and classes.",
+            ImageUrl = "images/reminder.jpg",
+            Url = "/student/reminders",
+            BackgroundColor = "blue"
+        },
+        new AlbumModel
+        {
+            Title = "Grocery Pal",
+            Description = "Find help with your grocery shopping needs.",
+            ImageUrl = "images/grocery-pal.jpg",
+            Url = "/student/grocery-assist",
+            BackgroundColor = "green"
+        },
+        new AlbumModel
+        {
+            Title = "Academic Resources",
+            Description = "Get your study materials and more.",
+            ImageUrl = "images/academics.jpg",
+            Url = "/student/academic-resources",
+            BackgroundColor = "orange"
+        }
+    };
+
+    public class AlbumModel
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
+        public string Url { get; set; }
+        public string BackgroundColor { get; set; }
+    }
+}

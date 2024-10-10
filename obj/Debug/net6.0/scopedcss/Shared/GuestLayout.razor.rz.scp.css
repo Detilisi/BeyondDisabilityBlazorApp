@@ -1,0 +1,9 @@
+.page[b-qzzawgddro] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-qzzawgddro] {
+    flex: 1;
+}

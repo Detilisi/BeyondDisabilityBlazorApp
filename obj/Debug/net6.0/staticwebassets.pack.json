@@ -1,0 +1,105 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BeyondDisabilityBlazorApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BeyondDisabilityBlazorApp.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\academics.jpg",
+      "PackagePath": "staticwebassets\\images\\academics.jpg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\grocery-pal.jpg",
+      "PackagePath": "staticwebassets\\images\\grocery-pal.jpg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\login-background.jpg",
+      "PackagePath": "staticwebassets\\images\\login-background.jpg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\medication-reminder.jpg",
+      "PackagePath": "staticwebassets\\images\\medication-reminder.jpg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\panic-button.jpg",
+      "PackagePath": "staticwebassets\\images\\panic-button.jpg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\reminder.jpg",
+      "PackagePath": "staticwebassets\\images\\reminder.jpg"
+    },
+    {
+      "Id": "D:\\source\\BeyondDisabilityBlazorApp\\BeyondDisabilityBlazorApp\\wwwroot\\images\\user.png",
+      "PackagePath": "staticwebassets\\images\\user.png"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.BeyondDisabilityBlazorApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.BeyondDisabilityBlazorApp.props",
+      "PackagePath": "build\\BeyondDisabilityBlazorApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.BeyondDisabilityBlazorApp.props",
+      "PackagePath": "buildMultiTargeting\\BeyondDisabilityBlazorApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.BeyondDisabilityBlazorApp.props",
+      "PackagePath": "buildTransitive\\BeyondDisabilityBlazorApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

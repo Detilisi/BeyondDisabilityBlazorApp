@@ -1,0 +1,55 @@
+﻿@page "/student/academic-resources"
+
+<PageTitle>Academic resources</PageTitle>
+
+<div class="container my-5">
+    <!-- Introduction Section -->
+    <div class="text-center mb-5">
+        <h1 class="text-warning">Academic Resources</h1>
+        <p class="lead text-orange">Our platform offers essential academic tools and resources to support your learning and development.</p>
+    </div>
+
+    <!-- Resources Table -->
+    <div class="card my-5 shadow">
+        <div class="card-header bg-opacity-50 bg-warning">
+            <h2>Unizulu Educational links</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Resource</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var resource in resources)
+                    {
+                        <tr>
+                            <td class="align-middle text-muted"><strong>@resource.Name</strong></td>
+                            <td class="align-middle">
+                                <a href="@resource.Link" target="_blank" class="text-decoration-none text-primary">@resource.LinkText</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Resource> resources = new()
+    {
+        new Resource { Name = "Moodle", Link = "https://learn.unizulu.ac.za/", LinkText = "https://learn.unizulu.ac.za/" },
+        new Resource { Name = "ITS Enabler", Link = "https://jasper.unizulu.ac.za/pls/prodi41/w99pkg.mi_login", LinkText = "https://jasper.unizulu.ac.za" },
+        new Resource { Name = "Help and support", Link = "https://learn.unizulu.ac.za/helpandsupport.html", LinkText = "https://learn.unizulu.helpandsupport.ac.za/" }
+    };
+
+    public class Resource
+    {
+        public string Name { get; set; }
+        public string Link { get; set; }
+        public string LinkText { get; set; }
+    }
+}

@@ -1,0 +1,140 @@
+﻿@page "/student/emergency"
+@using BeyondDisabilityBlazorApp.Data.DataAccess
+@using BeyondDisabilityBlazorApp.Data.Models
+
+<PageTitle>Emergency Services</PageTitle>
+
+<!-- Main view -->
+<div class="container text-center my-5">
+    <!-- Introduction Section -->
+    <div class="text-center">
+        <h1 class="text-danger">Emergency services</h1>
+    </div>
+
+    <!-- Emergency Contacts Table -->
+    <div class="card mt-5 shadow">
+        <div class="card-header text-white bg-dark">
+            <h2>Emergency Contacts</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Contact Name</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contact in emergencyContacts)
+                    {
+                        <tr>
+                            <td>@contact.Name</td>
+                            <td class="fw-bold text-primary">@contact.Phone</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Panic button -->
+    <div class="card mt-5 shadow">
+        <div class="card-header text-white bg-dark">
+            <h2>PANIC BUTTON!</h2>
+            <p class="text">Press the button only in case of an emergency. This action cannot be undone.</p>
+        </div>
+        <div class="card-body">
+            <!-- Panic Button -->
+            <button class="btn btn-lg btn-danger w-50 m-lg-5" style="height: 100px;" @onclick="OnPanicButtonClick">
+                HELP!
+            </button>
+
+            @if (showAlert)
+            {
+                <div class="alert alert-warning mt-3">
+                    Distress signal with your GPS location has been broaded to responders. Help is on the way👍!
+                    <p>
+                        Latitude: @emergencyLocation.Latitude
+                        <br />
+                        Longitude: @emergencyLocation.Longitude
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Javascript -->
+<script>
+    function getLocation() {
+        return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
+                    },
+                    (error) => {
+                        reject('Unable to retrieve location.');
+                    }
+                );
+            } else {
+                reject('Geolocation is not supported by this browser.');
+            }
+        });
+    }
+</script>
+
+
+<!-- C# code -->
+@code {
+    private bool showAlert = false;
+    private EmergencyLocation emergencyLocation;
+
+    [Inject] private IJSRuntime JS { get; set; }
+
+    private async Task OnPanicButtonClick()
+    {
+        // JS Interop for calling the JavaScript function
+        try
+        {
+            emergencyLocation = await JS.InvokeAsync<EmergencyLocation>("getLocation");
+
+            var distressSignal = new EmergencyNoticeModel()
+            {
+                    Lattitude = emergencyLocation.Latitude.ToString(),
+                    Longitude = emergencyLocation.Longitude.ToString(),
+                    Date = DateTime.Now
+            };
+            SqliteDataAccess.SaveEmergencyNotice(distressSignal);
+            showAlert = true;
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
+    // Sample list of emergency contacts
+    private List<EmergencyContact> emergencyContacts = new()
+    {
+        new EmergencyContact { Name = "Fire Department", Phone = "123-456-7890" },
+        new EmergencyContact { Name = "Medical Response", Phone = "098-765-4321" },
+        new EmergencyContact { Name = "Police Department", Phone = "555-123-4567" }
+    };
+
+    // Class to represent emergency contacts
+    public class EmergencyContact
+    {
+        public string Name { get; set; }
+        public string Phone { get; set; }
+    }
+
+    public class EmergencyLocation
+    {
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+    }
+}
